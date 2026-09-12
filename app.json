@@ -1,0 +1,39 @@
+{
+  "id": "edd94608-2188-4206-97a4-459cfc9f2165",
+  "name": "purchase-requisition-exercise",
+  "publisher": "Mikro One",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+                    {
+                      "id": "fd5eea83-a446-404b-be76-a19590815bf3",
+                      "name": "Kober-app",
+                      "publisher": "MSI",
+                      "version": "25.0.0.99"
+                    }
+                  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "28.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 59999
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "17.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

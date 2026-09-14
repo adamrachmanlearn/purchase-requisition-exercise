@@ -7,7 +7,7 @@ report 59991 purchReqExerciseForm
 
     dataset
     {
-        dataitem(DataItemName; purchReqExercise)
+        dataitem(DataItemName; purchReqHeader)
         {
             column(No_; "No.")
             {

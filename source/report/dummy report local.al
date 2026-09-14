@@ -6,7 +6,7 @@ report 59998 dummyReportLocal
 
     dataset
     {
-        dataitem(DataItemName; purchReqExercise)
+        dataitem(DataItemName; purchReqHeader)
         {
             // auto-fills request page to filter only the lines of this header's line
             RequestFilterFields = "No.";

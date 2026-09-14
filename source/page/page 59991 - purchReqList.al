@@ -1,11 +1,11 @@
-page 59991 purchReqExerciseList
+page 59991 purchReqList
 {
     Caption = 'Purchase Requisition (Exercise)';
 
-    PageType = List;
     ApplicationArea = All;
+    PageType = List;
     UsageCategory = Lists;
-    SourceTable = purchReqExercise;
+    SourceTable = purchReqHeader;
     CardPageId = 59992;
     Editable = false;
 

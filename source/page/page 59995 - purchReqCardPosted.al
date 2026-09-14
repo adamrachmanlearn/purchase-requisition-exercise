@@ -1,11 +1,8 @@
-page 59992 purchReqExerciseCard
+page 59995 purchReqCardPosted
 {
-    Caption = 'Purchase Requisition (Exercise)';
-    PageType = Card;
     ApplicationArea = All;
-    // hide usage category
-    // UsageCategory = Administration;
-    SourceTable = purchReqExercise;
+    PageType = Card;
+    SourceTable = purchReqHeaderPosted;
 
     layout
     {
@@ -17,15 +14,25 @@ page 59992 purchReqExerciseCard
 
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = all;
+                    AssistEdit = true;
 
+                    trigger OnAssistEdit()
+                    var
+                        currentNoSeries: Record "No. Series";
+                    begin
+                        if Page.RunModal(Page::"No. Series", currentNoSeries) = Action::LookupOK then
+                            Rec."No." := currentNoSeries.Code
+                    end;
                 }
                 field("Requestor No."; Rec."Requestor No.")
                 {
-
+                    ApplicationArea = all;
                 }
                 field("Requestor Name"; Rec."Requestor Name")
                 {
-
+                    ApplicationArea = all;
+                    Editable = false;
                 }
                 field("Document Date"; Rec."Document Date")
                 {
@@ -55,6 +62,20 @@ page 59992 purchReqExerciseCard
                 {
 
                 }
+                field("Divisi Code"; Rec."Divisi Code")
+                {
+
+                }
+                field("Notes Rejected"; Rec."Notes Rejected")
+                {
+
+                }
+            }
+
+            part(purchReqSubForm; purchReqSubForm)
+            {
+                SubPageLink = "Document No." = field("No.");
+                UpdatePropagation = Both;
             }
         }
     }
@@ -80,7 +101,7 @@ page 59992 purchReqExerciseCard
 
                 trigger OnAction()
                 var
-                    varHeader: Record purchReqExercise;
+                    varHeader: Record purchReqHeader;
                 begin
                     CurrPage.SetSelectionFilter(varHeader);
                     Report.Run(Report::dummyReportLocal, true, true, varHeader);
@@ -104,6 +125,18 @@ page 59992 purchReqExerciseCard
                 trigger OnAction()
                 begin
 
+                end;
+            }
+            action("posting")
+            {
+                Caption = 'Posting';
+                Image = Post;
+
+                trigger OnAction()
+                var
+                    varPrPosting: Codeunit purchReqPosting;
+                begin
+                    varPrPosting.purchReqPost(Rec."No.");
                 end;
             }
         }

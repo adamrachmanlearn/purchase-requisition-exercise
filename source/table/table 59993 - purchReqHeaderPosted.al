@@ -1,6 +1,6 @@
-table 59991 purchReqExercise
+table 59993 purchReqHeaderPosted
 {
-    Caption = 'Purchase Requisition Exercise';
+    Caption = 'Purchase Requisition Exercise Header Posted';
 
     fields
     {
@@ -18,7 +18,15 @@ table 59991 purchReqExercise
         }
         field(4; "Requestor No."; Code[20])
         {
+            TableRelation = Employee;
 
+            trigger OnValidate()
+            var
+                currentRequestor: Record Employee;
+            begin
+                if currentRequestor.Get(rec."Requestor No.") then
+                    Rec."Requestor Name" := currentRequestor."First Name"
+            end;
         }
         field(5; "Notes"; Text[250])
         {
@@ -153,6 +161,14 @@ table 59991 purchReqExercise
 
         }
         field(103; "Store Code"; Code[20])
+        {
+
+        }
+        field(104; "Divisi Code"; Code[20])
+        {
+
+        }
+        field(105; "Notes Rejected"; Text[250])
         {
 
         }

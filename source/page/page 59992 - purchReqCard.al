@@ -1,6 +1,6 @@
 page 59992 purchReqCard
 {
-    ApplicationArea = All;
+    Caption = 'Purchase Requisition (Exercise)';
     PageType = Card;
     SourceTable = purchReqHeader;
 
@@ -16,14 +16,6 @@ page 59992 purchReqCard
                 {
                     ApplicationArea = all;
                     AssistEdit = true;
-
-                    trigger OnAssistEdit()
-                    var
-                        currentNoSeries: Record "No. Series";
-                    begin
-                        if Page.RunModal(Page::"No. Series", currentNoSeries) = Action::LookupOK then
-                            Rec."No." := currentNoSeries.Code
-                    end;
                 }
                 field("Requestor No."; Rec."Requestor No.")
                 {
@@ -36,44 +28,52 @@ page 59992 purchReqCard
                 }
                 field("Document Date"; Rec."Document Date")
                 {
-
+                    ApplicationArea = all;
                 }
                 field("Delivery Due Date"; Rec."Delivery Due Date")
                 {
-
+                    ApplicationArea = all;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
-
+                    ApplicationArea = all;
                 }
                 field("Location Name"; Rec."Location Name")
                 {
-
+                    ApplicationArea = all;
+                    Editable = false;
                 }
-                field("Perihal"; Rec."Notes")
+                field(Notes; Rec.Notes)
                 {
-
+                    ApplicationArea = all;
+                    Caption = 'Perihal';
                 }
                 field("Status"; Rec."Status")
                 {
-
+                    ApplicationArea = all;
+                    Editable = false;
                 }
                 field("Store Code"; Rec."Store Code")
                 {
-
+                    ApplicationArea = all;
+                    Editable = false;
                 }
                 field("Divisi Code"; Rec."Divisi Code")
                 {
-
+                    ApplicationArea = all;
+                    Editable = false;
                 }
                 field("Notes Rejected"; Rec."Notes Rejected")
                 {
-
+                    ApplicationArea = all;
                 }
             }
 
             part(purchReqSubForm; purchReqSubForm)
             {
+                ApplicationArea = all;
+
+                // ____________field on line = field on header
                 SubPageLink = "Document No." = field("No.");
                 UpdatePropagation = Both;
             }
@@ -88,6 +88,7 @@ page 59992 purchReqCard
             {
                 Caption = 'Send Approval Request';
                 Image = SendApprovalRequest;
+                ApplicationArea = all;
 
                 trigger OnAction()
                 begin
@@ -98,6 +99,7 @@ page 59992 purchReqCard
             {
                 Caption = 'Print';
                 Image = Print;
+                ApplicationArea = all;
 
                 trigger OnAction()
                 var
@@ -111,6 +113,7 @@ page 59992 purchReqCard
             {
                 Caption = 'Copy Document';
                 Image = Copy;
+                ApplicationArea = all;
 
                 trigger OnAction()
                 begin
@@ -121,6 +124,7 @@ page 59992 purchReqCard
             {
                 Caption = 'Reject Material Request';
                 Image = Reject;
+                ApplicationArea = all;
 
                 trigger OnAction()
                 begin
@@ -129,15 +133,16 @@ page 59992 purchReqCard
             }
             action("posting")
             {
-                Caption = 'Posting';
+                Caption = 'Post';
                 Image = Post;
+                ApplicationArea = all;
 
-                trigger OnAction()
-                var
-                    varPrPosting: Codeunit purchReqPosting;
-                begin
-                    varPrPosting.purchReqPost(Rec."No.");
-                end;
+                // trigger OnAction()
+                // var
+                //     varPrPosting: Codeunit purchReqPosting;
+                // begin
+                //     varPrPosting.purchReqPost(Rec."No.");
+                // end;
             }
         }
 
@@ -147,6 +152,7 @@ page 59992 purchReqCard
             actionref("ref2"; "print") { }
             actionref("ref3"; "copyDoc") { }
             actionref("ref4"; "reject") { }
+            actionref("ref5"; "posting") { }
         }
     }
 }

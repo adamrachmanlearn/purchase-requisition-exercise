@@ -1,13 +1,11 @@
-report 59991 purchReqExerciseForm
+report 59991 purchReqReport
 {
-    Caption = 'Purchase Requisition Exercise Form';
-    UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
     DefaultRenderingLayout = LayoutName;
 
     dataset
     {
-        dataitem(DataItemName; purchReqHeader)
+        dataitem("Purchase Requisition Header"; purchReqHeader)
         {
             column(No_; "No.")
             {
@@ -49,48 +47,32 @@ report 59991 purchReqExerciseForm
             {
 
             }
+            column(Title; varEmployee."Job Title")
+            {
+
+            }
+            column(Department; varDepartment)
+            {
+
+            }
+
+            dataitem("Purchase Requisition Line";purchReqLine)
+            {
+                // DataItemLink = documentno;
+            }
         }
     }
-
-    // requestpage
-    // {
-    //     AboutTitle = 'Teaching tip title';
-    //     AboutText = 'Teaching tip content';
-    //     layout
-    //     {
-    //         area(Content)
-    //         {
-    //             group(GroupName)
-    //             {
-    //                 field(Name; SourceExpression)
-    //                 {
-
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     actions
-    //     {
-    //         area(processing)
-    //         {
-    //             action(LayoutName)
-    //             {
-
-    //             }
-    //         }
-    //     }
-    // }
 
     rendering
     {
         layout(LayoutName)
         {
             Type = RDLC;
-            LayoutFile = './source/report/report 59991 - purcReqExercise.rdlc';
+            LayoutFile = './source/report/report 59991 - purchReqReport.rdlc';
         }
     }
 
     var
-        myInt: Integer;
+        varEmployee : Record Employee;
+        varDepartment : Text[100];
 }

@@ -24,11 +24,11 @@ table 59991 purchReqHeader
             var
                 currentRequestor: Record Employee;
             begin
-                if currentRequestor.Get(rec."Requestor No.") then
+                if currentRequestor.Get(Rec."Requestor No.") then
                     Rec."Requestor Name" := currentRequestor."First Name"
             end;
         }
-        field(5; "Notes"; Text[250])
+        field(5; Notes; Text[250])
         {
 
         }
@@ -36,7 +36,7 @@ table 59991 purchReqHeader
         {
 
         }
-        field(7; "Amount"; Decimal)
+        field(7; Amount; Decimal)
         {
 
         }
@@ -44,7 +44,7 @@ table 59991 purchReqHeader
         {
 
         }
-        field(9; "Status"; Option)
+        field(9; Status; Option)
         {
             OptionMembers = Open,Closed;
         }
@@ -64,7 +64,7 @@ table 59991 purchReqHeader
         {
 
         }
-        field(14; "Quantity"; Decimal)
+        field(14; Quantity; Decimal)
         {
 
         }
@@ -72,7 +72,7 @@ table 59991 purchReqHeader
         {
 
         }
-        field(16; "Rejected"; Boolean)
+        field(16; Rejected; Boolean)
         {
 
         }
@@ -134,13 +134,21 @@ table 59991 purchReqHeader
         }
         field(51003; "Location Code"; Code[20])
         {
+            TableRelation = Location;
 
+            trigger OnValidate()
+            var
+                currentCode: Record Location;
+            begin
+                if currentCode.Get(Rec."Location Code") then
+                    Rec."Location Name" := currentCode.Name
+            end;
         }
         field(51004; "Requestor Outlet"; Boolean)
         {
 
         }
-        field(54000; "Advance"; Boolean)
+        field(54000; Advance; Boolean)
         {
 
         }
@@ -156,7 +164,7 @@ table 59991 purchReqHeader
         {
 
         }
-        field(102; "Delivery Due Date"; DateTime)
+        field(102; "Delivery Due Date"; Date)
         {
 
         }

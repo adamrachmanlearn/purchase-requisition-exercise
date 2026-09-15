@@ -6,7 +6,7 @@ table 59993 purchReqHeaderPosted
     {
         field(1; "No."; Code[20])
         {
-
+            TableRelation = "No. Series";
         }
         field(2; "Document Date"; Date)
         {
@@ -18,6 +18,7 @@ table 59993 purchReqHeaderPosted
         }
         field(4; "Requestor No."; Code[20])
         {
+            Editable = false;
             TableRelation = Employee;
 
             trigger OnValidate()
@@ -28,7 +29,7 @@ table 59993 purchReqHeaderPosted
                     Rec."Requestor Name" := currentRequestor."First Name"
             end;
         }
-        field(5; "Notes"; Text[250])
+        field(5; Notes; Text[250])
         {
 
         }
@@ -36,7 +37,7 @@ table 59993 purchReqHeaderPosted
         {
 
         }
-        field(7; "Amount"; Decimal)
+        field(7; Amount; Decimal)
         {
 
         }
@@ -44,7 +45,7 @@ table 59993 purchReqHeaderPosted
         {
 
         }
-        field(9; "Status"; Option)
+        field(9; Status; Option)
         {
             OptionMembers = Open,Closed;
         }
@@ -64,7 +65,7 @@ table 59993 purchReqHeaderPosted
         {
 
         }
-        field(14; "Quantity"; Decimal)
+        field(14; Quantity; Decimal)
         {
 
         }
@@ -72,7 +73,7 @@ table 59993 purchReqHeaderPosted
         {
 
         }
-        field(16; "Rejected"; Boolean)
+        field(16; Rejected; Boolean)
         {
 
         }
@@ -140,7 +141,7 @@ table 59993 purchReqHeaderPosted
         {
 
         }
-        field(54000; "Advance"; Boolean)
+        field(54000; Advance; Boolean)
         {
 
         }

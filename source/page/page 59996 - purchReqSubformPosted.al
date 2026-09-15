@@ -3,7 +3,6 @@ page 59996 purchReqSubFormPosted
 
     ApplicationArea = All;
     PageType = ListPart;
-    UsageCategory = Lists;
     SourceTable = purchReqLinePosted;
 
     layout

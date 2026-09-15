@@ -1,6 +1,6 @@
 page 59991 purchReqList
 {
-    Caption = 'Purchase Requisition (Exercise)';
+    Caption = 'Purchase Requisition List (Exercise)';
 
     ApplicationArea = All;
     PageType = List;

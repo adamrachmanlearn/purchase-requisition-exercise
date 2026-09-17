@@ -9,7 +9,6 @@ table 59992 purchReqLine
             DataClassification = ToBeClassified;
 
             TableRelation = purchReqHeader."No.";
-
         }
         field(2; "Line No."; Integer)
         {

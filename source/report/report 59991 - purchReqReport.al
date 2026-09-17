@@ -58,7 +58,14 @@ report 59991 purchReqReport
 
             dataitem("Purchase Requisition Line";purchReqLine)
             {
-                // DataItemLink = documentno;
+                DataItemLink = "Document No." = field("No.");
+
+                column(Description;Description) {}
+                column(Keterangan;Keterangan) {}
+                column(Unit_of_Measure;"Unit of Measure") {}
+                column(Quantity;Quantity) {}
+                column(Tanggal_Diperlukan;"Tanggal Diperlukan") {}
+                column(Specification_1;"Specification 1") {}
             }
         }
     }

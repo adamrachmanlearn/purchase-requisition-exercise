@@ -11,9 +11,14 @@ page 59993 purchReqSubForm
         {
             repeater(General)
             {
-                field("Account No."; Rec."Account No.")
+                field("Document No.";Rec."Document No.")
                 {
                     ApplicationArea = all;
+                }
+                field("Account No.";Rec."Account No.")
+                {
+                    ApplicationArea = all;
+                    Caption = 'No.';
                 }
                 field(Description; Rec.Description)
                 {

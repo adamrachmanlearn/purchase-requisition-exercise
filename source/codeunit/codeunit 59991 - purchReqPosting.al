@@ -1,10 +1,5 @@
 codeunit 59991 purchReqPosting
 {
-    trigger OnRun()
-    begin
-
-    end;
-
     procedure purchReqPost(documentNo: Code[20])
     var
         varPrHeader: Record purchReqHeader;
@@ -13,12 +8,14 @@ codeunit 59991 purchReqPosting
         varPrLinePosted: Record purchReqLinePosted;
     begin
         varPrHeader.SetRange("No.", documentNo);
-        if varPrHeader.FindFirst() then begin
+        if varPrHeader.FindFirst() then
+        begin
             varPrHeaderPosted.Init();
             varPrHeaderPosted.TransferFields(varPrHeader);
             varPrHeaderPosted.Insert();
             varPrLine.SetRange("Document No.", varPrHeader."No.");
-            if varPrLine.FindFirst() then begin
+            if varPrLine.FindFirst() then
+            begin
                 repeat
                     varPrLinePosted.Init();
                     varPrLinePosted.TransferFields(varPrLine);
@@ -26,11 +23,5 @@ codeunit 59991 purchReqPosting
                 until varPrLine.Next() = 0;
             end;
         end;
-
-        // another way to do it when the key already known
-        // if varPrHeader.Get(documentNo) then
-        // begin
-
-        // end;
     end;
 }

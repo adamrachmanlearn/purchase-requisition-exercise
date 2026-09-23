@@ -6,7 +6,7 @@ table 59993 purchReqHeaderPosted
     {
         field(1; "No."; Code[20])
         {
-            TableRelation = "No. Series";
+
         }
         field(2; "Document Date"; Date)
         {
@@ -18,14 +18,13 @@ table 59993 purchReqHeaderPosted
         }
         field(4; "Requestor No."; Code[20])
         {
-            Editable = false;
             TableRelation = Employee;
 
             trigger OnValidate()
             var
                 currentRequestor: Record Employee;
             begin
-                if currentRequestor.Get(rec."Requestor No.") then
+                if currentRequestor.Get(Rec."Requestor No.") then
                     Rec."Requestor Name" := currentRequestor."First Name"
             end;
         }
@@ -135,7 +134,15 @@ table 59993 purchReqHeaderPosted
         }
         field(51003; "Location Code"; Code[20])
         {
+            TableRelation = Location;
 
+            trigger OnValidate()
+            var
+                currentCode: Record Location;
+            begin
+                if currentCode.Get(Rec."Location Code") then
+                    Rec."Location Name" := currentCode.Name
+            end;
         }
         field(51004; "Requestor Outlet"; Boolean)
         {
@@ -157,7 +164,7 @@ table 59993 purchReqHeaderPosted
         {
 
         }
-        field(102; "Delivery Due Date"; DateTime)
+        field(102; "Delivery Due Date"; Date)
         {
 
         }

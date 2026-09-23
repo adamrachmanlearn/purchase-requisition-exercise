@@ -144,12 +144,12 @@ page 59992 purchReqCard
                 Image = Post;
                 ApplicationArea = all;
 
-                // trigger OnAction()
-                // var
-                //     varPrPosting: Codeunit purchReqPosting;
-                // begin
-                //     varPrPosting.purchReqPost(Rec."No.");
-                // end;
+                trigger OnAction()
+                var
+                    varPrPosting: Codeunit purchReqPosting;
+                begin
+                    varPrPosting.purchReqPost(Rec."No.");
+                end;
             }
         }
 

@@ -1,6 +1,6 @@
 table 59994 purchReqLinePosted
 {
-    Caption = 'Purchase Requisition Exercise Line';
+    Caption = 'Purchase Requisition Exercise Line Posted';
 
     fields
     {
@@ -8,6 +8,7 @@ table 59994 purchReqLinePosted
         {
             DataClassification = ToBeClassified;
 
+            TableRelation = purchReqHeader."No.";
         }
         field(2; "Line No."; Integer)
         {
@@ -17,7 +18,7 @@ table 59994 purchReqLinePosted
         field(3; "Item Type"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = "Non Asset (Services)","Fixed Asset","Inventory";
+            OptionMembers = Inventory, "Non Asset (Services)", "Fixed Asset";
         }
         field(4; "Account No."; Code[20])
         {
@@ -42,6 +43,12 @@ table 59994 purchReqLinePosted
         field(9; "Shortcut Dimension 1 Code"; Code[20])
         {
             DataClassification = ToBeClassified;
+
+            TableRelation = "Dimension Value".Code where(
+                "Global Dimension No." = const(1),
+                // Code = field("Dimension 1 Value Filter"),
+                Blocked = const(false)
+            );
         }
         field(10; "Shortcut Dimension 2 Code"; Code[20])
         {
@@ -241,10 +248,18 @@ table 59994 purchReqLinePosted
         field(58000; "Unit of Measure"; Code[20])
         {
             DataClassification = ToBeClassified;
+
+            TableRelation =
+                if ("Item Type" = const(Inventory))
+                    "Item Unit of Measure".Code where("Item No." = field("Account No."))
+                else
+                    "Unit of Measure".Code;
         }
         field(58001; "Location Code"; code[20])
         {
             DataClassification = ToBeClassified;
+
+            TableRelation = Location where("Use As In-Transit" = const(false));
         }
         field(51001; "Vendor No."; Code[20])
         {

@@ -73,7 +73,7 @@ page 59992 purchReqCard
             {
                 ApplicationArea = all;
 
-                // ____________field on line = field on header
+                // SubPageLink = field on line = field on header
                 SubPageLink = "Document No." = field("No.");
                 UpdatePropagation = Both;
             }
@@ -101,12 +101,19 @@ page 59992 purchReqCard
                 Image = Print;
                 ApplicationArea = all;
 
+                // trigger OnAction()
+                // var
+                //     varHeader: Record purchReqHeader;
+                // begin
+                //     CurrPage.SetSelectionFilter(varHeader);
+                //     Report.Run(Report::dummyReportLocal, true, true, varHeader);
+                // end;
                 trigger OnAction()
                 var
                     varHeader: Record purchReqHeader;
                 begin
                     CurrPage.SetSelectionFilter(varHeader);
-                    Report.Run(Report::dummyReportLocal, true, true, varHeader);
+                    Report.Run(Report::purchReqReport, true, true, varHeader);
                 end;
             }
             action("copyDoc")

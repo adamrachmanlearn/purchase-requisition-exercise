@@ -47,11 +47,11 @@ report 59991 purchReqReport
             {
 
             }
-            column(Title; varEmployee."Job Title")
+            column(employeeTitle;varEmployeeJobTitle)
             {
 
             }
-            column(Department; varDepartment)
+            column(employeeDepartment;varEmployeeDepartment)
             {
 
             }
@@ -67,6 +67,16 @@ report 59991 purchReqReport
                 column(Tanggal_Diperlukan;"Tanggal Diperlukan") {}
                 column(Specification_1;"Specification 1") {}
             }
+
+            trigger OnAfterGetRecord()
+            var
+                varEmployee: Record Employee;
+            begin
+                // if varEmployee search for current requestor no (employee's PK) then..
+                if varEmployee.Get("Requestor No.") then
+                varEmployeeJobTitle := varEmployee."Job Title";
+                varEmployeeDepartment := varEmployee."MSI_Division Code"
+            end;
         }
     }
 
@@ -80,6 +90,6 @@ report 59991 purchReqReport
     }
 
     var
-        varEmployee : Record Employee;
-        varDepartment : Text[100];
+        varEmployeeJobTitle : Text[100];
+        varEmployeeDepartment : Text[100];
 }

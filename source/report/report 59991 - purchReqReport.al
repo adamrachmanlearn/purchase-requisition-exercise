@@ -1,7 +1,7 @@
 report 59991 purchReqReport
 {
     ApplicationArea = All;
-    DefaultRenderingLayout = LayoutName;
+    DefaultRenderingLayout = RDLC_layout;
 
     dataset
     {
@@ -82,10 +82,15 @@ report 59991 purchReqReport
 
     rendering
     {
-        layout(LayoutName)
+        layout(RDLC_layout)
         {
             Type = RDLC;
             LayoutFile = './source/report/report 59991 - purchReqReport.rdlc';
+        }
+        layout(Word_layout)
+        {
+            Type = Word;
+            LayoutFile = './source/report/report 59991 - purchReqReport.docx';
         }
     }
 

@@ -14,6 +14,11 @@ page 59993 purchReqSubForm
                 field("Document No.";Rec."Document No.")
                 {
                     ApplicationArea = all;
+                    Visible = false;
+                }
+                field("Line No.";Rec."Line No.")
+                {
+                    ApplicationArea = all;
                 }
                 field("Account No.";Rec."Account No.")
                 {

@@ -4,6 +4,7 @@ page 59993 purchReqSubForm
     ApplicationArea = All;
     PageType = ListPart;
     SourceTable = purchReqLine;
+    AutoSplitKey = true;
 
     layout
     {
@@ -19,6 +20,7 @@ page 59993 purchReqSubForm
                 field("Line No.";Rec."Line No.")
                 {
                     ApplicationArea = all;
+                    Visible = false;
                 }
                 field("Account No.";Rec."Account No.")
                 {

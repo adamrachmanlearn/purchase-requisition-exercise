@@ -5,6 +5,7 @@ page 59993 purchReqSubForm
     PageType = ListPart;
     SourceTable = purchReqLine;
     AutoSplitKey = true;
+    DelayedInsert = false;
 
     layout
     {

@@ -74,6 +74,7 @@ page 59992 purchReqCard
                 ApplicationArea = all;
 
                 // SubPageLink = field on line = field on header
+                // auto fill document no on subform
                 SubPageLink = "Document No." = field("No.");
                 UpdatePropagation = Both;
             }

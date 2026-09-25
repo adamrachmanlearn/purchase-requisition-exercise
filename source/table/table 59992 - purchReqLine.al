@@ -23,6 +23,16 @@ table 59992 purchReqLine
         field(4; "Account No."; Code[20])
         {
             DataClassification = ToBeClassified;
+            TableRelation = Item;
+
+            trigger OnValidate()
+            var
+                varItem : Record Item;
+            begin
+                if varItem.Get("Account No.") then
+                Rec.Description := varItem.Description;
+                Rec."Unit of Measure" := varItem."Purch. Unit of Measure";
+            end;
         }
         field(5; "Description"; Text[250])
         {
@@ -96,7 +106,7 @@ table 59992 purchReqLine
         }
         field(21; "Dimension 1 Value Filter"; Code[20])
         {
-            DataClassification = ToBeClassified;
+            FieldClass = FlowFilter;
         }
         field(22; "Dimension 2 Value Filter"; Code[20])
         {
@@ -249,11 +259,13 @@ table 59992 purchReqLine
         {
             DataClassification = ToBeClassified;
 
-            TableRelation =
-                if ("Item Type" = const(Inventory))
-                    "Item Unit of Measure".Code where("Item No." = field("Account No."))
-                else
-                    "Unit of Measure".Code;
+            TableRelation = "Item Unit of Measure".Code where("Item No." = field("Account No."));
+
+            // TableRelation =
+            //     if ("Item Type" = const(Inventory))
+            //         "Item Unit of Measure".Code where("Item No." = field("Account No."))
+            //     else
+            //         "Unit of Measure".Code;
         }
         field(58001; "Location Code"; code[20])
         {
@@ -299,4 +311,13 @@ table 59992 purchReqLine
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+        varPurchReqHeader : Record purchReqHeader;
+    begin
+        // .get always refers to PK
+        if varPurchReqHeader.Get("Document No.") then
+        Rec."Location Code" := varPurchReqHeader."Location Code";
+    end;
 }

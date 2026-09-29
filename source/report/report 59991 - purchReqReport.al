@@ -85,11 +85,13 @@ report 59991 purchReqReport
         layout(RDLC_layout)
         {
             Type = RDLC;
+            Caption = 'RDLC Layout';
             LayoutFile = './source/report/report 59991 - purchReqReport.rdlc';
         }
         layout(Word_layout)
         {
             Type = Word;
+            Caption = 'Word Layout';
             LayoutFile = './source/report/report 59991 - purchReqReport.docx';
         }
     }

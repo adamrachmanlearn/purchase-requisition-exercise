@@ -636,7 +636,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Document_Date.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>d-MMM-yyyy</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1051,7 +1053,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1230,7 +1231,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Tanggal_Diperlukan.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>d MMMM yyyy</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1251,6 +1254,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

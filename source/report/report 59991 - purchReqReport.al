@@ -71,15 +71,20 @@ report 59991 purchReqReport
                 column(Tanggal_Diperlukan;"Tanggal Diperlukan") {}
                 column(Specification_1;"Specification 1") {}
                 column(runningNo; varRunningNoText){}
+                column(varTotalQty;varTotalQty){}
 
                 trigger OnAfterGetRecord()
                 begin
+                    // create running number
                     if Description <> '' then begin
                         varRunningNo += 1;
                         varRunningNoText := Format(varRunningNo);
                     end
                     else
                         varRunningNoText := '';
+
+                    // sum quantity
+                    varTotalQty += Quantity;
                 end;
             }
 
@@ -124,4 +129,5 @@ report 59991 purchReqReport
         varRunningNo: Integer;
         varRunningNoText: Text[100];
         varCompany: Record "Company Information";
+        varTotalQty: Integer;
 }

@@ -66,6 +66,17 @@ report 59991 purchReqReport
                 column(Quantity;Quantity) {}
                 column(Tanggal_Diperlukan;"Tanggal Diperlukan") {}
                 column(Specification_1;"Specification 1") {}
+                column(runningNo; varRunningNoText){}
+
+                trigger OnAfterGetRecord()
+                begin
+                    if Description <> '' then begin
+                        varRunningNo += 1;
+                        varRunningNoText := Format(varRunningNo);
+                    end
+                    else
+                        varRunningNoText := '';
+                end;
             }
 
             trigger OnAfterGetRecord()
@@ -99,4 +110,6 @@ report 59991 purchReqReport
     var
         varEmployeeJobTitle : Text[100];
         varEmployeeDepartment : Text[100];
+        varRunningNo: Integer;
+        varRunningNoText: Text[100];
 }

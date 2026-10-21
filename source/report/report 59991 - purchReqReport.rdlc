@@ -1062,21 +1062,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox7">
+                        <Textbox Name="runningNo">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=RowNumber("Details1")</Value>
+                                  <Value>=Fields!runningNo.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <rd:DefaultName>runningNo</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1439,6 +1439,9 @@ End Function
         </Field>
         <Field Name="Specification_1">
           <DataField>Specification_1</DataField>
+        </Field>
+        <Field Name="runningNo">
+          <DataField>runningNo</DataField>
         </Field>
       </Fields>
       <Query>

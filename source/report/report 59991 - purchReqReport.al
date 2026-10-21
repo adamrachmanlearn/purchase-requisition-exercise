@@ -55,6 +55,10 @@ report 59991 purchReqReport
             {
 
             }
+            column(companyPicture; varCompany.Picture)
+            {
+
+            }
 
             dataitem("Purchase Requisition Line";purchReqLine)
             {
@@ -107,9 +111,17 @@ report 59991 purchReqReport
         }
     }
 
+    // getting blog fields
+    trigger OnInitReport()
+    begin
+        varCompany.Get();
+        varCompany.CalcFields(Picture);
+    end;
+
     var
         varEmployeeJobTitle : Text[100];
         varEmployeeDepartment : Text[100];
         varRunningNo: Integer;
         varRunningNoText: Text[100];
+        varCompany: Record "Company Information";
 }
